@@ -24,20 +24,6 @@ const withAuth = require("./middleware/withAuth")
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-const routes = require("./routes")
-
-routes.forEach(route => {
-    console.log(`[ROUTES] Loading ${route.name}...`)
-    app.use(route.path, route.router)
-})
-
-app.use(express.static("public"))
-app.use(bodyParser.urlencoded({ extended: true }))
-
-if (config.proxy) {
-    app.set('trust proxy', 1)
-}
-
 app.use(session({
     secret: config.cookieSecret,
     resave: false,
@@ -47,6 +33,9 @@ app.use(session({
     }
 }))
 
+app.use(express.static("public"))
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use((req, res, next) => {
     if (req.url == "/login") {
         next()
@@ -54,6 +43,17 @@ app.use((req, res, next) => {
         withAuth(req, res, next)
     }
 })
+
+const routes = require("./routes")
+
+routes.forEach(route => {
+    console.log(`[ROUTES] Loading ${route.name}...`)
+    app.use(route.path, route.router)
+})
+
+if (config.proxy) {
+    app.set('trust proxy', 1)
+}
 
 app.get("/", (req, res) => {
     if (!fs.existsSync(config.config_dir)) {
