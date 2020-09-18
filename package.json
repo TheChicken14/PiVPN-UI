@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Simple web UI for PiVPN",
   "scripts": {
-    "install": "npm install && node setup.js",
+    "install": "node setup.js",
     "start": "node ."
   },
   "main": "main.js",
