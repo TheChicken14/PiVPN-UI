@@ -12,6 +12,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>
             </li>
+            <li>
+                {{#if cpuTemp}}
+                <span class="navbar-text">
+                    CPU: <span id="cputempbox">{{ cpuTemp }}</span>°C
+                </span>
+                {{else}}
+                <span class="navbar-text">
+                    CPU: <span id="cputempbox">--</span>°C
+                </span>
+                {{/if}}
+            </li>
         </ul>
     </div>
 </nav>
