@@ -1,0 +1,21 @@
+{
+  "name": "PiVPN-UI",
+  "version": "1.0.0",
+  "description": "A Simple web UI for PiVPN",
+  "scripts": {
+    "install": "npm install && node setup.js",
+    "start": "node ."
+  },
+  "main": "main.js",
+  "author": "Wisse Hes",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "inquirer": "^7.3.3",
+    "shelljs": "^0.8.4"
+  }
+}
