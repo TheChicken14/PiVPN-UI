@@ -1,3 +1,4 @@
 module.exports = [
-    require("./configs")
+    require("./configs"),
+    require("./info")
 ]
