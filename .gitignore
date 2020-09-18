@@ -120,3 +120,6 @@ dist
 
 # Config
 config.json
+
+# vscode
+.vscode/
