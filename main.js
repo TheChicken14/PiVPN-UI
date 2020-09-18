@@ -21,6 +21,8 @@ const app = express()
 
 const withAuth = require("./middleware/withAuth")
 
+const getTemp = require("./functions/getTemp")
+
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
@@ -55,13 +57,16 @@ if (config.proxy) {
     app.set('trust proxy', 1)
 }
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     if (!fs.existsSync(config.config_dir)) {
         return res.status(500).send("Config directory doesn't exist!")
     }
 
+    const cpuTemp = await getTemp()
+
     res.render("home", {
-        profiles: getProfiles()
+        profiles: getProfiles(),
+        cpuTemp
     })
 })
 
